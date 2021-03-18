@@ -1,24 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import { Switch, BrowserRouter, Route, Redirect } from 'react-router-dom';
-import { routes } from 'route';
+import 'style/index.scss';
+
+import 'antd/dist/antd.css';
+
+import 'icons'; // icons
+
+import App from 'App'
 
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      {routes.map(route => {
-        return (
-          <Route key={route.path} {...route}></Route>
-        )
-      })}
-      <Redirect to='/404'></Redirect>
-    </Switch>
-  </BrowserRouter>
-  ,
-  document.getElementById('root')
+  <App />
+  , document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

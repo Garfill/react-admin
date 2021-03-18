@@ -1,0 +1,37 @@
+.layout-wrapper {
+  min-height: 100vh !important;
+}
+
+// sider
+.fixed-sider {
+  position: fixed !important;
+  left: 0;
+  height: 100vh;
+  overflow: auto;
+}
+
+// logo
+.logo-container {
+  text-align: center;
+  height: 60px;
+
+  img {
+    max-width: 100px;
+    max-height: 100%;
+  }
+}
+
+// header
+.header-container {
+  transition: all .1s linear;
+  .header-background {
+    background: #fff;
+  }
+}
+
+.app-open-sider .header-container {
+  margin-left: 200px;
+}
+.app-close-sider .header-container {
+  margin-left: 80px;
+}
