@@ -38,13 +38,13 @@ class SidebarMenu extends Component {
   renderRoute(route) {
     if (!route.children || route.children.length === 0) {
       return (
-        <Menu.Item key={route.path} icon={ route.icon && <route.icon />}>
+        <Menu.Item key={route.path} icon={ route.icon && <route.icon />} icon={route.icon ? route.icon : null}>
           {route.meta.title}
         </Menu.Item>
       )
     } else {
       return (
-        <SubMenu title={route.meta.title} key={route.path}>
+        <SubMenu title={route.meta.title} key={route.path} icon={route.icon ? route.icon : null}>
           {
             route.children.map(item => this.renderRoute(item))
           }

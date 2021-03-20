@@ -13,7 +13,7 @@ export class AppMain extends Component {
   // 开发中，修改路由文件(asyncRoute、route/index)的热更新 会导致 userMenu 变为空
   render() {
     return (
-      <Content>
+      <Content className="app-content-container">
         <Switch>
             {
               this.props.userRoutes.map(route => {

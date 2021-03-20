@@ -23,15 +23,28 @@
 
 // header
 .header-container {
-  transition: all .1s linear;
+  transition: all .2s linear;
+  z-index: 10;
   .header-background {
+    position: relative;
     background: #fff;
   }
+  .header-dropdown {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    line-height: normal;
+  }
 }
-
 .app-open-sider .header-container {
   margin-left: 200px;
 }
 .app-close-sider .header-container {
   margin-left: 80px;
+}
+
+// content
+.app-content-container {
+  padding: 10px;
 }
