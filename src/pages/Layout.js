@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+
 
 import { Layout } from 'antd'
 import Sidebar from 'components/Sidebar'
@@ -9,14 +11,10 @@ import AppMain from 'components/AppMain'
 import { getToken } from 'utils/token'
 
 class AppLayout extends PureComponent {
-  state = {
-    collapsed: false,
-  }
   render() {
-    console.log('layout render')
     return getToken() ? 
     (
-      <Layout className={'layout-wrapper' + (this.state.collapsed ? ' app-close-sider' : ' app-open-sider')}>
+      <Layout className={'layout-wrapper' + (this.props.collapsed ? ' app-close-sider' : ' app-open-sider')}>
         <Sidebar onCollapse={ this.onCollapse }></Sidebar>
         <Layout className="header-container">
           <HeaderMenu></HeaderMenu>
@@ -25,12 +23,12 @@ class AppLayout extends PureComponent {
       </Layout>
     ) :  <Redirect to="/login"></Redirect>
   }
-  
-  onCollapse = (collapsed) => {
-    this.setState({
-      collapsed
-    })
+}
+
+const mapStateToProps = state => {
+  return {
+    collapsed: state.setting.siderCollapsed
   }
 }
 
-export default AppLayout
+export default connect(mapStateToProps)(AppLayout)

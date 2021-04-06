@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 
 import { Layout } from 'antd'
 
@@ -10,7 +12,13 @@ const { Sider } = Layout;
 class Sidebar extends Component {
   render() {
     return (
-    <Sider collapsible className="fixed-sider" onCollapse={this.props.onCollapse}>
+    <Sider
+      collapsible
+      collapsed={this.props.collapsed}
+      trigger={null}
+      className="fixed-sider"
+      onCollapse={this.props.onCollapse}
+    >
       <div className="logo-container">
         <img src={logo} alt="logo"/>
       </div>
@@ -21,4 +29,10 @@ class Sidebar extends Component {
 }
 
 
-export default Sidebar
+const mapStateToProps = state => {
+  return {
+    collapsed: state.setting.siderCollapsed
+  }
+}
+
+export default connect(mapStateToProps)(Sidebar)

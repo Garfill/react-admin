@@ -1,15 +1,15 @@
 import { lazy } from 'react'
 
-import { HomeOutlined, DisconnectOutlined } from '@ant-design/icons'
+import { HomeOutlined, DisconnectOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 
 export const asyncRoutes = [
   {
     path: '/home',
-    component: lazy(() => import('pages/Test')),
+    component: lazy(() => import('pages/Admin')),
     meta: {
       title: 'Home'
     },
-    icon: <HomeOutlined />
+    icon: HomeOutlined
   }, 
   {
     path: '/test',
@@ -17,6 +17,7 @@ export const asyncRoutes = [
     meta: {
       title: 'Test'
     },
+    icon: QuestionCircleOutlined,
     children: [
       {
         path: '/sub',
@@ -33,6 +34,6 @@ export const asyncRoutes = [
     meta: {
       title: '404',
     },
-    icon: <DisconnectOutlined />
+    icon: DisconnectOutlined
   },
 ]

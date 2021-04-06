@@ -4,7 +4,7 @@ import './icon.scss'
 export default class SvgIcon extends Component {
   render() {
     const { className, iconClass } = this.props;
-    const svgClass = className ? `svg-icon svg-icon-${className}` : 'svg-icon';
+    const svgClass = className ? `svg-icon ${className}` : 'svg-icon';
     const iconName = `#icon-${iconClass}`;
 
     if (iconClass) {
@@ -14,11 +14,8 @@ export default class SvgIcon extends Component {
         </svg>
       )
     } else {
-      return (
-        <span></span>
-      )
+      return null
     }
-
   }
 }
 

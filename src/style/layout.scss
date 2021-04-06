@@ -34,7 +34,18 @@
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
-    line-height: normal;
+    margin: 0;
+    line-height: 64px;
+    cursor: pointer;
+  }
+  .header-collapse-icon {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    margin: 0;
+    line-height: 64px;
+    cursor: pointer;
   }
 }
 .app-open-sider .header-container {

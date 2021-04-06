@@ -4,8 +4,6 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 
-import { getToken } from 'utils/token'
-
 const { Content } = Layout
 
 export class AppMain extends Component {
@@ -29,21 +27,6 @@ export class AppMain extends Component {
       </Content>
     )
   }
-  componentDidMount() {
-    this.checkUserPermission();
-  }
-  componentDidUpdate(prevProps, prevState) {
-    this.checkUserPermission();
-  }
-  checkUserPermission = () => {
-    if (getToken()) {
-      if (!this.props.userData.id) {
-        // 获取用户信息
-        // simulate ajax
-        setTimeout(this.props.setUserData, 50)
-      }
-    }
-  }
 }
 
 const mapStateToProps = state => {
@@ -53,21 +36,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setUserData() {
-      console.log('setUser');
-      dispatch({
-        type: 'setUserData',
-        value: {
-          id: 1,
-          name: getToken()
-        }
-      })
-    }
-  }
-}
-
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(AppMain)
+export default connect(mapStateToProps)(AppMain)

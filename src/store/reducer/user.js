@@ -22,7 +22,7 @@ function buildUserData(state, userData) {
   const userRoutes = flattenRoutes(userMenu)
   return Object.assign({}, state, {
     userMenu,
-    userData: userData,
+    userData,
     userRoutes,
   })
 }
