@@ -19,10 +19,11 @@ export class AppRouter extends Component {
     constantRoutes,
   }
   render() {
+    console.log("router render")
     return (
       <Fragment>
         <ScrolTolTop></ScrolTolTop>
-        <Suspense fallback={<div>Loading~~~</div>}>
+        <Suspense fallback={null}>
           <Switch>
             {
               this.state.constantRoutes.map(route => {

@@ -39,7 +39,7 @@ class SidebarMenu extends Component {
     if (!route.children || route.children.length === 0) {
       return (
         <Menu.Item key={route.path} icon={ route.icon ? <route.icon /> : null}>
-          {route.meta.title}
+          {route.meta ? route.meta.title : ''}
         </Menu.Item>
       )
     } else {

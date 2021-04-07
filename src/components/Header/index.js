@@ -18,7 +18,7 @@ export class HeaderMenu extends Component {
     );
     return (
       <Header className="header-background">
-        <div className="header-collapse-icon" onClick={this.toggleSider}>
+        <div className={"header-collapse-icon" + (this.props.siderCollapsed ? ' collapsed' : '')} onClick={this.toggleSider}>
           <MenuFoldOutlined />
         </div>
         <Dropdown overlay={menu} trigger={['click']}>

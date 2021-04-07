@@ -41,11 +41,17 @@
   .header-collapse-icon {
     position: absolute;
     top: 50%;
-    left: 20px;
+    left: 0px;
     transform: translateY(-50%);
     margin: 0;
+    padding: 0 20px;
     line-height: 64px;
     cursor: pointer;
+    transition: transform linear .2s;
+
+    &.collapsed {
+      transform: translateY(-50%) rotate(180deg);
+    }
   }
 }
 .app-open-sider .header-container {

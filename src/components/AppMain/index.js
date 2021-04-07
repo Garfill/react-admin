@@ -19,10 +19,6 @@ export class AppMain extends Component {
               })
             }
             <Redirect from='/' to="/home" exact></Redirect>
-            {
-              /* 避免后台获取用户信息（包含路由）过程中跳转到404无法跳回来 */
-              this.props.userData.id ? <Redirect to="/404"></Redirect> : null
-            }
         </Switch>
       </Content>
     )

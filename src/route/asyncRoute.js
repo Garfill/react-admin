@@ -2,10 +2,14 @@ import { lazy } from 'react'
 
 import { HomeOutlined, DisconnectOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 
+const Admin = lazy(() => import('pages/Admin'))
+const Test = lazy(() => import('pages/Test'))
+const NotFound = lazy(() => import('pages/404'))
+
 export const asyncRoutes = [
   {
     path: '/home',
-    component: lazy(() => import('pages/Admin')),
+    component: Admin,
     meta: {
       title: 'Home'
     },
@@ -13,24 +17,15 @@ export const asyncRoutes = [
   }, 
   {
     path: '/test',
-    component: lazy(() => import('pages/Test')),
+    component: Test,
     meta: {
       title: 'Test'
     },
     icon: QuestionCircleOutlined,
-    children: [
-      {
-        path: '/sub',
-        component: lazy(() => import('pages/Test')),
-        meta: {
-          title: 'TestChild'
-        }
-      }
-    ]
   },
   {
     path: '/404',
-    component: lazy(() => import('pages/404')),
+    component: NotFound,
     meta: {
       title: '404',
     },

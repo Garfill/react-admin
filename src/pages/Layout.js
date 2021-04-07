@@ -12,8 +12,9 @@ import { getToken } from 'utils/token'
 
 class AppLayout extends PureComponent {
   render() {
-    return getToken() ? 
-    (
+    console.log('layout render')
+    return getToken()
+    ? (
       <Layout className={'layout-wrapper' + (this.props.collapsed ? ' app-close-sider' : ' app-open-sider')}>
         <Sidebar onCollapse={ this.onCollapse }></Sidebar>
         <Layout className="header-container">
@@ -21,7 +22,8 @@ class AppLayout extends PureComponent {
           <AppMain></AppMain>
         </Layout>
       </Layout>
-    ) :  <Redirect to="/login"></Redirect>
+    )
+    : <Redirect to="/login"></Redirect>
   }
 }
 

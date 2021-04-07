@@ -20,12 +20,8 @@ export function getUserData(id) {
     })
 
     // Async/Await for ES7 可添加异步请求，结合async/await
-    // return {
-    //   type: 'setUserData',
-    //   value: {
-    //     id,
-    //     name: getToken()
-    //   }    
-    // }
+    // const userData = await getUserDataFromRemote(id);
+    // dispatch(setUserDataAction);
+    // return userData
   }
 }
