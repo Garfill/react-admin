@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Suspense } from 'react'
 import { Layout } from 'antd'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
@@ -12,14 +12,16 @@ export class AppMain extends Component {
   render() {
     return (
       <Content className="app-content-container">
-        <Switch>
-            {
-              this.props.userRoutes.map(route => {
-                return  <Route key={route.path} path={route.path} component={route.component} exact={route.exact}/>
-              })
-            }
-            <Redirect from='/' to="/home" exact></Redirect>
-        </Switch>
+        <Suspense fallback={null}>
+          <Switch>
+              {
+                this.props.userRoutes.map(route => {
+                  return  <Route key={route.path} path={route.path} component={route.component} exact={route.exact}/>
+                })
+              }
+              <Redirect from='/' to="/home" exact></Redirect>
+          </Switch>
+        </Suspense>
       </Content>
     )
   }

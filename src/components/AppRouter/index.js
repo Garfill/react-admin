@@ -1,5 +1,5 @@
 /* 路由组件 */
-import React, { Component, Suspense, Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Switch, withRouter, Redirect, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -23,7 +23,6 @@ export class AppRouter extends Component {
     return (
       <Fragment>
         <ScrolTolTop></ScrolTolTop>
-        <Suspense fallback={null}>
           <Switch>
             {
               this.state.constantRoutes.map(route => {
@@ -35,7 +34,6 @@ export class AppRouter extends Component {
               )
             }
           </Switch>
-        </Suspense>
       </Fragment>
     )
   }
@@ -59,7 +57,7 @@ export class AppRouter extends Component {
     }
     NProgress.done();
     return null;
-  }  
+  } 
 }
 
 const mapStateToProps = state => {
