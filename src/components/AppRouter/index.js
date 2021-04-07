@@ -1,4 +1,4 @@
-/* 路由组件 */
+/* 路由守卫组件 */
 import React, { Component, Fragment } from 'react'
 import { Switch, withRouter, Redirect, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -53,6 +53,12 @@ export class AppRouter extends Component {
           // simulate ajax
           props.setUserData()
         }  
+      }
+    } else {
+      if (props.location.pathname !== '/login') {        
+        props.history.push({
+          pathname: '/login'
+        })
       }
     }
     NProgress.done();
