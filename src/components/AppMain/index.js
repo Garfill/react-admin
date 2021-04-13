@@ -1,9 +1,8 @@
 import React, { Component, Suspense } from 'react'
 import { Layout } from 'antd'
-import { Route, Switch, Redirect } from 'react-router-dom'
-
+import { Route, Redirect, withRouter, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 const { Content } = Layout
 
 export class AppMain extends Component {
@@ -13,14 +12,34 @@ export class AppMain extends Component {
     return (
       <Content className="app-content-container">
         <Suspense fallback={null}>
-          <Switch>
-              {
-                this.props.userRoutes.map(route => {
-                  return  <Route key={route.path} path={route.path} component={route.component} exact={route.exact}/>
-                })
-              }
-              <Redirect from='/' to="/home" exact></Redirect>
-          </Switch>
+          <TransitionGroup>
+              <Switch location={this.props.location}>
+                {
+                  this.props.userRoutes.map(route => {
+                    return (
+                      <Route key={route.path} path={route.path} exact={route.exact}>
+                        {({match}) => {
+                          console.log(match)
+                          return (
+                            <CSSTransition
+                              unmountOnExit
+                              classNames="page"
+                              timeout={300}
+                              in={match !== null}
+                            >
+                              <div className="page">
+                                <route.component></route.component>
+                              </div>
+                            </CSSTransition>
+                          )}
+                        }
+                      </Route>
+                    )
+                  })
+                }
+                <Redirect from='/' to="/home" exact></Redirect>
+              </Switch>
+          </TransitionGroup>
         </Suspense>
       </Content>
     )
@@ -34,4 +53,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(AppMain)
+export default connect(mapStateToProps)(withRouter(AppMain))
