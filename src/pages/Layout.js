@@ -11,7 +11,7 @@ class AppLayout extends PureComponent {
     return (
       <Layout className={'layout-wrapper' + (this.props.collapsed ? ' app-close-sider' : ' app-open-sider')}>
         <Sidebar onCollapse={ this.onCollapse }></Sidebar>
-        <Layout className="header-container">
+        <Layout className="main-container">
           <HeaderMenu></HeaderMenu>
           <AppMain></AppMain>
         </Layout>

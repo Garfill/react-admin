@@ -18,12 +18,14 @@ export class HeaderMenu extends Component {
     );
     return (
       <Header className="header-background">
-        <div className={"header-collapse-icon" + (this.props.siderCollapsed ? ' collapsed' : '')} onClick={this.toggleSider}>
-          <MenuFoldOutlined />
+        <div className="header-inner">
+          <div className={"header-collapse-icon" + (this.props.siderCollapsed ? ' collapsed' : '')} onClick={this.toggleSider}>
+            <MenuFoldOutlined />
+          </div>
+          <Dropdown overlay={menu} trigger={['click']}>
+            <p className="header-dropdown">admin&nbsp;<DownOutlined /></p>
+          </Dropdown>
         </div>
-        <Dropdown overlay={menu} trigger={['click']}>
-          <p className="header-dropdown">admin&nbsp;<DownOutlined /></p>
-        </Dropdown>
       </Header>
     )
   }

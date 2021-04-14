@@ -19,7 +19,6 @@ export class AppMain extends Component {
                     return (
                       <Route key={route.path} path={route.path} exact={route.exact}>
                         {({match}) => {
-                          console.log(match)
                           return (
                             <CSSTransition
                               unmountOnExit

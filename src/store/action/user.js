@@ -15,7 +15,7 @@ export function getUserData(id) {
     return Promise.resolve().then(() => {
       setTimeout(() => {
         dispatch(setUserDataAction(id))
-      }, 1000)
+      }, 100)
       return id;
     })
 
