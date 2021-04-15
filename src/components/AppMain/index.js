@@ -6,38 +6,40 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 const { Content } = Layout
 
 export class AppMain extends Component {
-  // 后面 Redirect 是为了自动定位到第一个
-  // 开发中，修改路由文件(asyncRoute、route/index)的热更新 会导致 userMenu 变为空
+  // 过场动画只有进入的动画，由于Switch只会渲染匹配的路由，不使用Switch每次刷新会重定向到home（userRoute初始为空）
   render() {
     return (
       <Content className="app-content-container">
         <Suspense fallback={null}>
           <TransitionGroup>
-              <Switch location={this.props.location}>
-                {
-                  this.props.userRoutes.map(route => {
-                    return (
-                      <Route key={route.path} path={route.path} exact={route.exact}>
-                        {({match}) => {
-                          return (
-                            <CSSTransition
-                              unmountOnExit
-                              classNames="page"
-                              timeout={300}
-                              in={match !== null}
-                            >
-                              <div className="page">
-                                <route.component></route.component>
-                              </div>
-                            </CSSTransition>
-                          )}
-                        }
-                      </Route>
-                    )
-                  })
-                }
-                <Redirect from='/' to="/home" exact></Redirect>
-              </Switch>
+            <Switch location={this.props.location}>
+              {
+                this.props.userRoutes.map(route => {
+                  return (
+                    <Route key={route.path} path={route.path} exact={route.exact}>
+                      {({match}) => {
+                        return (
+                          <CSSTransition
+                            unmountOnExit
+                            classNames="page"
+                            timeout={300}
+                            in={match !== null}
+                          >
+                            <div className="page">
+                              <route.component></route.component>
+                            </div>
+                          </CSSTransition>
+                        )}
+                      }
+                    </Route>
+                  )
+                })
+              }
+              {/* 从根路径自动定位到home */}
+              <Redirect from='/' to="/home" exact></Redirect>
+              {/* 避免后台获取用户信息过程中(userRoute = [])跳转到404无法跳回来 */}
+              {this.props.userData.id ? <Redirect to="/404"></Redirect> : null}
+            </Switch>
           </TransitionGroup>
         </Suspense>
       </Content>

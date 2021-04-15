@@ -7,7 +7,7 @@ class NotFound extends Component {
     return (
       <div style={{ textAlign: 'center', marginTop: '200px'}}>
         <h1>
-          404 not found
+          404 NOT FOUND 
         </h1>
         <Button onClick={this.backToIndex}>Home</Button>
       </div>
