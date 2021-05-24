@@ -5,6 +5,10 @@ const setUserDataAction = (userData) => ({
   value: userData
 })
 
+const setUserMenuAction = () => ({
+  type: 'setUserMenu'
+})
+
 export function getUserData(id) {
   // async action
   return async function(dispatch) {
@@ -12,6 +16,7 @@ export function getUserData(id) {
       id
     })
     dispatch(setUserDataAction(data))
+    dispatch(setUserMenuAction())
     return data;
   }
 }

@@ -43,6 +43,7 @@ export class HeaderMenu extends Component {
     this.props.history.push({
       pathname: '/login'
     })
+    this.props.logoutDispatch();
   }
   toggleSider = () => {
     this.props.toggleSiderCollapse(!this.props.siderCollapsed)
@@ -62,6 +63,12 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: 'toggleSider',
         value: status,
+      })
+    },
+    logoutDispatch() {
+      dispatch({
+        type: 'setUserData',
+        value: {},
       })
     }
   }

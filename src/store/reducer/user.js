@@ -7,6 +7,8 @@ export default function userReducer(state = defaultUserState, action) {
   switch (action.type) {
     case 'setUserData':
       return buildUserData(state, action.value)
+    case 'setUserMenu':
+      return buildUserMenuAndRoute(state)
     case 'setOpenMenu':
       return Object.assign({}, state, {
         openMenu: action.value
@@ -18,11 +20,16 @@ export default function userReducer(state = defaultUserState, action) {
 }
 
 function buildUserData(state, userData) {
+  return Object.assign({}, state, {
+    userData,
+  })
+}
+
+function buildUserMenuAndRoute(state) {
   const userMenu = buildUserMenu(asyncRoutes)
   const userRoutes = flattenRoutes(userMenu)
   return Object.assign({}, state, {
     userMenu,
-    userData,
     userRoutes,
   })
 }
