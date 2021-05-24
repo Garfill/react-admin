@@ -22,6 +22,16 @@ export const asyncRoutes = [
       title: 'Test'
     },
     icon: QuestionCircleOutlined,
+
+    children: [
+      {
+        path: '/sub',
+        component: Test,
+        meta: {
+          title: 'TestSub'
+        }
+      }
+    ]
   },
   {
     path: '/404',

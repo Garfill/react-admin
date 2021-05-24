@@ -19,7 +19,6 @@ export class AppRouter extends Component {
     constantRoutes,
   }
   render() {
-    console.log("router render")
     return (
       <Fragment>
         <ScrolTolTop></ScrolTolTop>
@@ -48,10 +47,11 @@ export class AppRouter extends Component {
           pathname: '/home'
         })
       } else {
-        if (!props.userData.id) {
+        if (props.userData.id === undefined) {
           // 获取用户信息
-          // simulate ajax
-          props.setUserData()
+          props.getUserInfo({
+            id: 0
+          });
         }  
       }
     } else {
@@ -75,8 +75,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    async setUserData() {
-      await dispatch(getUserData(1))
+    async getUserInfo({ id }) {
+      await dispatch(getUserData(id))
     }
   }
 }

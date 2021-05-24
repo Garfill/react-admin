@@ -9,6 +9,9 @@ import 'icons'; // icons
 import App from 'App'
 
 // import reportWebVitals from './reportWebVitals';
+import { mockXHR } from './mock'
+
+mockXHR();
 
 ReactDOM.render(
   <App />

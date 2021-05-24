@@ -1,17 +1,21 @@
 import axios from 'axios'
 
+const BASE_URL = process.env.REACT_APP_API_URL;
+
 const request = axios.create({
-  baseURL: 'http://123.57.176.198:3000',
+  baseURL: BASE_URL,
   timeout: 5000,
 
   withCredentials: false,
 })
 
-request.interceptors.response.use(function responseHandler(response) {
+request.interceptors.response.use((response) => {
   if (response.status === 200) {
+    console.log('response.config.url :>> ', response.config.url);
+    console.log('response.data :>> ', response.data);
     return response.data;
   } else {
-    return false;
+    return Promise.reject(new Error(response.message || 'Network Error'));
   }
 })
 

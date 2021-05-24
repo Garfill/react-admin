@@ -7,6 +7,7 @@ import { setToken } from 'utils/token'
 
 import 'style/login.scss'
 
+import { login, getUserInfo } from 'api/user';
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -52,15 +53,18 @@ class Login extends Component {
     const { username: oldname, password: oldpass } = this.state.form;
     return (username !== oldname || password !== oldpass);
   }
-  
-  handleSubmit(values) {
+  async handleSubmit(values) {
     // Login submit
     this.setState({
       form: values
     })
     
     // TODO: user login
-    setToken('admin');
+    const { data } = await login();
+    setToken(data.token);
+    await getUserInfo({
+      id: data.id
+    })
     this.props.updateMenu();
 
     this.props.history.push({

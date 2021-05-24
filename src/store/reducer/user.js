@@ -10,7 +10,7 @@ export default function userReducer(state = defaultUserState, action) {
     case 'setOpenMenu':
       return Object.assign({}, state, {
         openMenu: action.value
-      })  
+      })
     default:
       break;
   }

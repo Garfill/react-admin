@@ -1,27 +1,17 @@
-import { getToken } from 'utils/token'
+import { getUserInfo } from 'api/user';
 
-const setUserDataAction = (id) => ({
+const setUserDataAction = (userData) => ({
   type: 'setUserData',
-  value: {
-    id,
-    name: getToken()
-  }
+  value: userData
 })
 
 export function getUserData(id) {
   // async action
-  return function(dispatch) {
-    // Promise for ES6
-    return Promise.resolve().then(() => {
-      setTimeout(() => {
-        dispatch(setUserDataAction(id))
-      }, 100)
-      return id;
+  return async function(dispatch) {
+    const { data } = await getUserInfo({
+      id
     })
-
-    // Async/Await for ES7 可添加异步请求，结合async/await
-    // const userData = await getUserDataFromRemote(id);
-    // dispatch(setUserDataAction);
-    // return userData
+    dispatch(setUserDataAction(data))
+    return data;
   }
 }

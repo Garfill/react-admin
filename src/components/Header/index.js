@@ -9,6 +9,7 @@ import { setToken } from 'utils/token';
 
 const { Header } = Layout;
 
+/* Header 组件需要外层再加一层Layout ， antd/layout主要采用 flex 进行布局 */
 export class HeaderMenu extends Component {
   render() {
     const menu = (
@@ -61,5 +62,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HeaderMenu))
-
-/* Header 组件需要外层再加一层Layout ， antd/layout主要采用 flex 进行布局 */
