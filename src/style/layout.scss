@@ -40,14 +40,23 @@
     height: 100%;
   }
 
-  .header-dropdown {
+  .header-user-block {
+    display: flex;
+    align-items: center;
     position: absolute;
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
     margin: 0;
-    line-height: 64px;
     cursor: pointer;
+  }
+  
+  .header-dropdown {
+    line-height: 64px;
+  }
+
+  .header-avatar {
+    margin-left: 16px;
   }
 
   .header-collapse-icon {

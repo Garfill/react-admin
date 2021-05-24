@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { Layout, Menu, Dropdown } from 'antd'
+import { Layout, Menu, Dropdown, Image } from 'antd'
 import { DownOutlined, MenuFoldOutlined } from '@ant-design/icons';
 
 import { setToken } from 'utils/token';
@@ -23,9 +23,14 @@ export class HeaderMenu extends Component {
           <div className={"header-collapse-icon" + (this.props.siderCollapsed ? ' collapsed' : '')} onClick={this.toggleSider}>
             <MenuFoldOutlined />
           </div>
-          <Dropdown overlay={menu} trigger={['click']}>
-            <p className="header-dropdown">admin&nbsp;<DownOutlined /></p>
-          </Dropdown>
+          <div className="header-user-block">
+            <Dropdown overlay={menu} trigger={['click']}>
+              <div className="header-dropdown">
+                {this.props.userData.name} <DownOutlined />
+              </div>
+            </Dropdown>
+            <Image className="header-avatar" src={this.props.userData.avatar} preview={false} width={50}></Image>
+          </div>
         </div>
       </Header>
     )
@@ -46,7 +51,8 @@ export class HeaderMenu extends Component {
 
 const mapStateToProps = state => {
   return {
-    siderCollapsed: state.setting.siderCollapsed
+    siderCollapsed: state.setting.siderCollapsed,
+    userData: state.user.userData
   }
 }
 
