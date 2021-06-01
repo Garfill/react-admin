@@ -7,7 +7,7 @@ import { setToken } from 'utils/token'
 
 import 'style/login.scss'
 
-import { login, getUserInfo } from 'api/user';
+import { login } from 'api/user';
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -62,13 +62,10 @@ class Login extends Component {
     // TODO: user login
     const { data } = await login();
     setToken(data.token);
-    await getUserInfo({
-      id: data.id
-    })
     this.props.updateMenu();
 
     this.props.history.push({
-      pathname: '/',
+      pathname: '/home',
     })
   }
 }
