@@ -12,6 +12,8 @@
 > 使用 localStorage 持久化 token
 > 
 > 多环境控制：[dotenv](http://github.com/motdotla/dotenv)
+> 
+> Mockjs 模拟数据请求
 
 
 ### TODO

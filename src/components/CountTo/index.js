@@ -7,13 +7,13 @@ export class CountTo extends Component {
       localStart: props.start || 0,
       localEnd: props.end || 0,
       duration: props.duration || 3000,
-      progress: 0,
       nowValue: 0,
       decimals: 0, // 小数点保留位数
     }
     this.startTimestamp = null; // 开始计数的时间戳
     this.timestamp = null;
     this.autoplay = props.autoplay || false;
+    this.loop = props.loop || false;
     this.isPlay = false;
     this.requestTimer = null;
 
@@ -44,10 +44,10 @@ export class CountTo extends Component {
       duration: this.props.duration || 3000,
     })
     this.startTimestamp = null;
-    this.requestTimer = window.requestAnimationFrame(this.play)
+    this.requestTimer = window.requestAnimationFrame(this.count)
   }
   
-  play = (timestamp) => {
+  count = (timestamp) => {
     if (!this.startTimestamp) {
       this.startTimestamp = timestamp
     }
@@ -74,9 +74,12 @@ export class CountTo extends Component {
       displayValue: String(nowValue)
     })
     if (progress < this.state.duration) {
-      this.requestTimer = window.requestAnimationFrame(this.play)
+      this.requestTimer = window.requestAnimationFrame(this.count)
     } else {
       this.isPlay = false;
+      if (this.loop) {
+        this.loopCount();
+      }
       this.callback();
     }
   }
@@ -95,7 +98,7 @@ export class CountTo extends Component {
   resume = () => {
     if (this.isPlay) return;
     this.startTimestamp = null;
-    this.requestTimer = window.requestAnimationFrame(this.play)
+    this.requestTimer = window.requestAnimationFrame(this.count)
   }
 
   callback = () => {
@@ -103,6 +106,20 @@ export class CountTo extends Component {
     if (this.props.callback && this.props.callback instanceof Function) {
       this.props.callback();
     }
+  }
+
+  loopCount = () => {
+    window.requestAnimationFrame(this.start)
+  }
+
+  reset = () => {
+    this.startTimestamp = null;
+    window.cancelAnimationFrame(this.requestTimer);
+    this.setState({
+      localStart: this.props.start || 0,
+      displayValue: String(this.props.start || 0),
+    })
+    this.isPlay = false;
   }
   
 }
