@@ -95,7 +95,14 @@
 // content
 .app-content-container {
   margin-top: 64px;
-  padding: 8px;
+  padding: 16px;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+// 内容区分块
+.box-container {
+  padding: 16px;
+  border-radius: 5px;
+  background-color: #fff;
 }
