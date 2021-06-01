@@ -23,7 +23,6 @@ class Fade extends Component {
     return (
       <Transition in={this.props.inProp} timeout={this.state.duration}>
         {(state) => {
-          console.log(state)
           return (
             <div style={{
               ...this.state.defaultStyle,
