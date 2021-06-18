@@ -1,10 +1,12 @@
 import Mock from 'mockjs';
 import user from './user'
+import list from './list'
 
 import { param2Obj } from './utils';
 
 export const mocks = [
-  ...user
+  ...user,
+  ...list
 ];
 
 export function mockXHR() {

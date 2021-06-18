@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react'
+import React, { Component, createRef, Fragment } from 'react'
 import CountTo from 'components/CountTo'
 import styled from 'styled-components'
 import { Button, Input } from 'antd';
@@ -23,26 +23,28 @@ export class Home extends Component {
     `
 
     return (
-      <div className="box-container">
-        <h2>计数器（Counter）</h2>
-        <CountToContainer>
-          <CountTo start={this.state.startVal} end={this.state.endVal} ref={this.countToRef}></CountTo>
-        </CountToContainer>
-        <div>
-          <span>开始值</span>
-          <Input value={this.state.startVal} onChange={this.handleStartChange}></Input>
+      <Fragment>
+        <div className="box-container">
+          <h2>计数器（Counter）</h2>
+          <CountToContainer>
+            <CountTo start={this.state.startVal} end={this.state.endVal} ref={this.countToRef} duration={100000}></CountTo>
+          </CountToContainer>
+          <div>
+            <span>开始值</span>
+            <Input value={this.state.startVal} onChange={this.handleStartChange}></Input>
+          </div>
+          <div>
+            <span>结束值</span>
+            <Input value={this.state.endVal} onChange={this.handleEndChange}></Input>
+          </div>
+          <ButtonContainer>
+            <Button style={{marginRight: '8px'}} onClick={() => this.clickBtn('start')} type="primary">start</Button>
+            <Button style={{marginRight: '8px'}} onClick={() => this.clickBtn('pause')}>pause</Button>
+            <Button style={{marginRight: '8px'}} onClick={() => this.clickBtn('resume')} type="primary">resume</Button>
+            <Button style={{marginRight: '8px'}} onClick={() => this.clickBtn('reset')}>reset</Button>
+          </ButtonContainer>
         </div>
-        <div>
-          <span>结束值</span>
-          <Input value={this.state.endVal} onChange={this.handleEndChange}></Input>
-        </div>
-        <ButtonContainer>
-          <Button style={{marginRight: '8px'}} onClick={() => this.clickBtn('start')} type="primary">start</Button>
-          <Button style={{marginRight: '8px'}} onClick={() => this.clickBtn('pause')}>pause</Button>
-          <Button style={{marginRight: '8px'}} onClick={() => this.clickBtn('resume')} type="primary">resume</Button>
-          <Button style={{marginRight: '8px'}} onClick={() => this.clickBtn('reset')}>reset</Button>
-        </ButtonContainer>
-      </div>
+      </Fragment>
     )
   }
 
@@ -51,12 +53,14 @@ export class Home extends Component {
   }
   
   handleStartChange = (e) => {
+    this.countToRef.current.pause()
     this.setState({
       startVal: Number(e.target.value)
     })
   }
 
   handleEndChange = (e) => {
+    this.countToRef.current.pause()
     this.setState({
       endVal: Number(e.target.value)
     })

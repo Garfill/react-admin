@@ -25,12 +25,12 @@
 // header
 .main-container {
   transition: marginLeft .2s linear;
-  z-index: 10;
   .header-background {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 10;
     transition: all .1s linear;
     background: #fff;
   }
@@ -102,7 +102,13 @@
 
 // 内容区分块
 .box-container {
+  margin-top: 16px;
   padding: 16px;
   border-radius: 5px;
   background-color: #fff;
+}
+
+// 列表项
+.list-item {
+  margin-top: 8px;
 }
