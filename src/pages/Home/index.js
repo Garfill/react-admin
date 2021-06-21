@@ -56,6 +56,10 @@ export class Home extends Component {
     this.countToRef.current.pause()
     this.setState({
       startVal: Number(e.target.value)
+    }, () => {
+      window.requestAnimationFrame(() => {
+        this.countToRef.current.start()
+      })
     })
   }
 
@@ -63,6 +67,10 @@ export class Home extends Component {
     this.countToRef.current.pause()
     this.setState({
       endVal: Number(e.target.value)
+    }, () => {
+      window.requestAnimationFrame(() => {
+        this.countToRef.current.start()
+      })
     })
   }
 }
