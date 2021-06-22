@@ -21,7 +21,8 @@ export const asyncRoutes = [
     component: HookPage,
     meta: {
       title: 'HookPractice'
-    }
+    },
+    icon: 'book'
   },
   {
     path: '/test',

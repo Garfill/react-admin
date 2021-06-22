@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { Menu } from 'antd'
-
+import SvgIcon from 'components/SvgIcon'
 const { SubMenu } = Menu
 
 class SidebarMenu extends Component {
@@ -36,15 +36,24 @@ class SidebarMenu extends Component {
     )
   }
   renderRoute(route) {
+    let icon = null;
+    console.log('route.icon :>> ', route.icon);
+    if (route.icon) {
+      if (typeof route.icon === 'object') {
+        icon = <route.icon />
+      } else {
+        icon = <SvgIcon iconClass={route.icon}/>
+      }
+    }
     if (!route.children || route.children.length === 0) {
       return (
-        <Menu.Item key={route.path} icon={ route.icon ? <route.icon /> : null}>
+        <Menu.Item key={route.path} icon={ icon }>
           {route.meta ? route.meta.title : ''}
         </Menu.Item>
       )
     } else {
       return (
-        <SubMenu title={route.meta.title} key={route.path} icon={route.icon ? <route.icon/> : null}>
+        <SubMenu title={route.meta.title} key={route.path} icon={ icon }>
           {
             route.children.map(item => this.renderRoute(item))
           }

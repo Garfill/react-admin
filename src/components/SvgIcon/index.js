@@ -9,7 +9,7 @@ export default class SvgIcon extends Component {
 
     if (iconClass) {
       return (
-        <svg className={svgClass} ariaHidden="true">
+        <svg className={svgClass}>
           <use xlinkHref={iconName}/>
         </svg>
       )
