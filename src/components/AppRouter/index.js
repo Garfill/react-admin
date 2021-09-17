@@ -8,7 +8,7 @@ import 'nprogress/nprogress.css'
 
 import { constantRoutes } from 'route'
 
-import ScrolTolTop from 'components/ScrolTolTop'
+import ScrollToTop from 'components/ScrollToTop'
 
 import { getUserData } from 'store/action/user'
 import { getToken } from 'utils/token'
@@ -21,7 +21,7 @@ export class AppRouter extends Component {
   render() {
     return (
       <Fragment>
-        <ScrolTolTop></ScrolTolTop>
+        <ScrollToTop></ScrollToTop>
           <Switch>
             {
               this.state.constantRoutes.map(route => {
@@ -75,7 +75,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    async getUserInfo({ id }) {
+    getUserInfo: async ({ id }) => {
       await dispatch(getUserData(id))
     }
   }

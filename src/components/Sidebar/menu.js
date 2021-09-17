@@ -37,7 +37,6 @@ class SidebarMenu extends Component {
   }
   renderRoute(route) {
     let icon = null;
-    console.log('route.icon :>> ', route.icon);
     if (route.icon) {
       if (typeof route.icon === 'object') {
         icon = <route.icon />

@@ -1,6 +1,6 @@
 import request from './request'
 
-export function getArticle(data) {
+export function getList(data) {
   return request({
     url: '/article/list',
     method: 'get',

@@ -41,7 +41,7 @@ function buildUserMenuAndRoute(state) {
  * @param {Object} parent 
  * @returns Array
  */
- export function buildUserMenu(routes, parent) {
+export function buildUserMenu(routes, parent) {
   let menus = []
   for (let i = 0; i < routes.length; i++) {
     let route = routes[i];

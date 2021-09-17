@@ -1,0 +1,15 @@
+.effect-hook {
+  display: inline-block;
+  transform-origin: center;
+}
+.effect-rotate {
+  animation: hookRotate 1s linear;
+}
+@keyframes hookRotate {
+  from {
+    transform: rotateY(0);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
