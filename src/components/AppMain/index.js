@@ -37,7 +37,7 @@ export class AppMain extends Component {
               }
               {/* 从根路径自动定位到home */}
               <Redirect from='/' to="/home" exact></Redirect>
-              {/* 避免后台获取用户信息过程中(userRoute = [])跳转到404无法跳回来 */}
+              {/* 避免获取用户信息过程中(userRoute = [])跳转到404无法跳回来 */}
               {this.props.userData.id ? <Redirect to="/404"></Redirect> : null}
             </Switch>
           </TransitionGroup>

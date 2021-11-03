@@ -27,7 +27,7 @@ export class Home extends Component {
         <div className="box-container">
           <h2>计数器（Counter）</h2>
           <CountToContainer>
-            <CountTo start={this.state.startVal} end={this.state.endVal} ref={this.countToRef} duration={100000}></CountTo>
+            <CountTo start={this.state.startVal} end={this.state.endVal} ref={this.countToRef} duration={1500}></CountTo>
           </CountToContainer>
           <div>
             <span>开始值</span>

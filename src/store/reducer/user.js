@@ -3,15 +3,15 @@ import { defaultUserState } from './state'
 import { asyncRoutes } from 'route/asyncRoute'
 import { flattenRoutes } from 'route'
 
-export default function userReducer(state = defaultUserState, action) {
-  switch (action.type) {
-    case 'setUserData':
-      return buildUserData(state, action.value)
-    case 'setUserMenu':
+export default function userReducer(state = defaultUserState, { type, payload }) {
+  switch (type) {
+    case 'getUserData':
+      return buildUserData(state, payload)
+    case 'getUserMenu':
       return buildUserMenuAndRoute(state)
     case 'setOpenMenu':
       return Object.assign({}, state, {
-        openMenu: action.value
+        openMenu: payload
       })
     default:
       break;
@@ -19,7 +19,7 @@ export default function userReducer(state = defaultUserState, action) {
   return state
 }
 
-function buildUserData(state, userData) {
+function buildUserData(state, userData = {}) {
   return Object.assign({}, state, {
     userData,
   })

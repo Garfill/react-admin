@@ -90,7 +90,7 @@ const mapDispatchToProps = (dispatch) => {
     setOpenMenu(keys) {
       dispatch({
         type: 'setOpenMenu',
-        value: keys
+        payload: keys
       })
     }
   }

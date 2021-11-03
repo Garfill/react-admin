@@ -13,14 +13,7 @@ const mock = [
     url: '/user/info.*',
     type: 'get',
     response: config => {
-      const { id } = config.query;
-      if (!id) {
-        return {
-          code: 40004,
-          message: 'There is not an id for search'
-        }
-      }
-      
+      const { id = 0 } = config.query;  
       const info = users[id];
       if (!info) {
         return {

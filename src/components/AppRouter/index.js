@@ -10,7 +10,6 @@ import { constantRoutes } from 'route'
 
 import ScrollToTop from 'components/ScrollToTop'
 
-import { getUserData } from 'store/action/user'
 import { getToken } from 'utils/token'
 
 NProgress.configure({ showSpinner: false });
@@ -49,9 +48,7 @@ export class AppRouter extends Component {
       } else {
         if (props.userData.id === undefined) {
           // 获取用户信息
-          props.getUserInfo({
-            id: 0
-          });
+          props.getUserInfo();
         }  
       }
     } else {
@@ -75,8 +72,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUserInfo: async ({ id }) => {
-      await dispatch(getUserData(id))
+    getUserInfo: async () => {
+      await dispatch({
+        type: 'getUserData_saga'
+      })
     }
   }
 }

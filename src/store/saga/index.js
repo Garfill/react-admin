@@ -1,14 +1,11 @@
-import { put, takeEvery } from 'redux-saga/effects'
+import { all } from 'redux-saga/effects'
+import userSaga from 'store/action/user'
 
-function* helloSaga(action) {
-  console.log('helloSaga')
-  console.log('action :>> ', action);
-  yield put({
-    type: 'helloSaga'
-  })
+
+function* rootSaga () {
+  yield all([
+    userSaga()
+  ])
 }
 
-export function* fetchHello() {
-  yield takeEvery('hello_saga', helloSaga)
-}
-
+export default rootSaga
