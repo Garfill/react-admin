@@ -15,7 +15,7 @@ export class CountTo extends Component {
     this.autoplay = props.autoplay || false;
     this.loop = props.loop || false;
     this.requestTimer = null;
-    this.isPause = false; // 是否处于暂停
+    this.isPause = !this.autoplay; // 是否处于暂停
 
     this.state.displayValue = String(this.state.localStart);
 
