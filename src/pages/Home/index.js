@@ -2,26 +2,26 @@ import React, { Component, createRef, Fragment } from 'react'
 import CountTo from 'components/CountTo'
 import styled from 'styled-components'
 import { Button, Input } from 'antd';
+
+const CountToContainer = styled.div`
+  margin-bottom: 16px;
+  font-size: 24px;
+  color: #444;
+`
+const ButtonContainer = styled.div`
+  margin-top: 16px;
+`
 export class Home extends Component {
   constructor(props) {
     super(props);
     this.countToRef = createRef();
 
     this.state = {
-      startVal: 0,
+      startVal: 50,
       endVal: 100,
     }
   }
   render() {
-    const CountToContainer = styled.div`
-      margin-bottom: 16px;
-      font-size: 24px;
-      color: #444;
-    `
-    const ButtonContainer = styled.div`
-      margin-top: 16px;
-    `
-
     return (
       <Fragment>
         <div className="box-container">
@@ -56,10 +56,6 @@ export class Home extends Component {
     this.countToRef.current.pause()
     this.setState({
       startVal: Number(e.target.value)
-    }, () => {
-      window.requestAnimationFrame(() => {
-        this.countToRef.current.start()
-      })
     })
   }
 
@@ -67,10 +63,6 @@ export class Home extends Component {
     this.countToRef.current.pause()
     this.setState({
       endVal: Number(e.target.value)
-    }, () => {
-      window.requestAnimationFrame(() => {
-        this.countToRef.current.start()
-      })
     })
   }
 }

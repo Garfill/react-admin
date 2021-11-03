@@ -7,7 +7,7 @@ export class CountTo extends Component {
       localStart: props.start || 0,
       localEnd: props.end || 0,
       duration: props.duration || 3000,
-      nowValue: 0,
+      nowValue: props.start || 0,
       decimals: 0, // 小数点保留位数
     }
     this.startTimestamp = null; // 开始计数的时间戳
@@ -23,11 +23,11 @@ export class CountTo extends Component {
   }
   render() {
     return (
-      <div>
+      <>
         {
           this.state.displayValue
         }
-      </div>
+      </>
     )
   }
 
@@ -44,14 +44,16 @@ export class CountTo extends Component {
   }
 
   start = () => {
+    if (!this.isPause) return
     this.setState({
       localStart: this.props.start || 0,
       duration: this.props.duration || 3000,
+    }, () => {
+      this.startTimestamp = null;
+      this.isPause = false;
+      this.countDown = this.state.localStart > this.state.localEnd;
+      this.requestTimer = window.requestAnimationFrame(this.count)
     })
-    this.startTimestamp = null;
-    this.isPause = false;
-    this.countDown = this.state.localStart > this.state.localEnd;
-    this.requestTimer = window.requestAnimationFrame(this.count)
   }
   
   count = (timestamp) => {
@@ -124,6 +126,7 @@ export class CountTo extends Component {
 
   reset = () => {
     this.startTimestamp = null;
+    this.isPause = true;
     window.cancelAnimationFrame(this.requestTimer);
     this.setState({
       localStart: this.props.start || 0,
