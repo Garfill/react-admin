@@ -2,7 +2,6 @@ import React, { Component, Suspense } from 'react'
 import { Layout } from 'antd'
 import { Route, Redirect, withRouter, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
 const { Content } = Layout
 
 export class AppMain extends Component {
@@ -11,36 +10,26 @@ export class AppMain extends Component {
     return (
       <Content className="app-content-container">
         <Suspense fallback={null}>
-          <TransitionGroup>
-            <Switch location={this.props.location}>
-              {
-                this.props.userRoutes.map(route => {
-                  return (
-                    <Route key={route.path} path={route.path} exact={route.exact}>
-                      {({match}) => {
-                        return (
-                          <CSSTransition
-                            unmountOnExit
-                            classNames="page"
-                            timeout={300}
-                            in={match !== null}
-                          >
-                            <div className="page">
-                              <route.component></route.component>
-                            </div>
-                          </CSSTransition>
-                        )}
-                      }
-                    </Route>
-                  )
-                })
-              }
-              {/* 从根路径自动定位到home */}
-              <Redirect from='/' to="/home" exact></Redirect>
-              {/* 避免获取用户信息过程中(userRoute = [])跳转到404无法跳回来 */}
-              {this.props.userData.id ? <Redirect to="/404"></Redirect> : null}
-            </Switch>
-          </TransitionGroup>
+          <Switch>
+            {
+              this.props.userRoutes.map(route => {
+                return (
+                  <Route key={route.path} path={route.path} exact={route.exact}>
+                    {({ match }) => {
+                      return (
+                        <div className="page">
+                          <route.component></route.component>
+                        </div>
+                      )
+                    }
+                    }
+                  </Route>
+                )
+              })
+            }
+            {/* 避免获取用户信息过程中(userRoute = [])跳转到404无法跳回来 */}
+            {this.props.userData.id ? <Redirect to="/404"></Redirect> : null}
+          </Switch>
         </Suspense>
       </Content>
     )
