@@ -12,31 +12,31 @@ export class AppMain extends Component {
     return (
       <Content className="app-content-container">
         <Suspense fallback={
-          <div className="loading-container">页面加载中</div>
+          null
         }>
-          <TransitionGroup>
+          {/* <TransitionGroup>
             <CSSTransition
               key={location.pathname}
               classNames="fade"
               timeout={300}
             >
-              <Switch location={location}>
-                {
-                  this.props.userRoutes.map(route => {
-                    return (
-                      <Route key={route.path} path={route.path} exact={route.exact}>
-                        <div className="page">
-                          <route.component></route.component>
-                        </div>
-                      </Route>
-                    )
-                  })
-                }
-                {/* 避免获取用户信息过程中(userRoute = [])跳转到404无法跳回来 */}
-                {this.props.userData.id ? <Redirect to="/404"></Redirect> : null}
-              </Switch>
             </CSSTransition>
-          </TransitionGroup>
+          </TransitionGroup> */}
+          <Switch location={location}>
+            {
+              this.props.userRoutes.map(route => {
+                return (
+                  <Route key={route.path} path={route.path} exact={route.exact}>
+                    <div className="page">
+                      <route.component></route.component>
+                    </div>
+                  </Route>
+                )
+              })
+            }
+            {/* 避免获取用户信息过程中(userRoute = [])跳转到404无法跳回来 */}
+            {this.props.userData.id ? <Redirect to="/404"></Redirect> : null}
+          </Switch>
         </Suspense>
       </Content>
     )
