@@ -94,8 +94,8 @@
 
 // content
 .app-content-container {
-  margin-top: 64px;
-  padding: 16px;
+  position: relative;
+  margin: 64px 16px 0;
   overflow-x: hidden;
   overflow-y: auto;
 }
