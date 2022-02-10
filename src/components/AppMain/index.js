@@ -6,7 +6,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 const { Content } = Layout
 
 export class AppMain extends Component {
-  // 过场动画只有进入的动画，由于Switch只会渲染匹配的路由，不使用Switch每次刷新会重定向到home（userRoute初始为空）
+  // 组件懒加载，导致首次渲染没有动画效果
   render() {
     const location = this.props.location
     return (
@@ -14,14 +14,12 @@ export class AppMain extends Component {
         <Suspense fallback={
           null
         }>
-          {/* <TransitionGroup>
+          <TransitionGroup>
             <CSSTransition
               key={location.pathname}
               classNames="fade"
               timeout={300}
             >
-            </CSSTransition>
-          </TransitionGroup> */}
           <Switch location={location}>
             {
               this.props.userRoutes.map(route => {
@@ -37,6 +35,8 @@ export class AppMain extends Component {
             {/* 避免获取用户信息过程中(userRoute = [])跳转到404无法跳回来 */}
             {this.props.userData.id ? <Redirect to="/404"></Redirect> : null}
           </Switch>
+            </CSSTransition>
+          </TransitionGroup>
         </Suspense>
       </Content>
     )

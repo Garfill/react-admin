@@ -6,10 +6,12 @@
 }
 .fade-enter {
   opacity: 0;
+  transform: translateX(50px);
 }
 
 .fade-enter-active {
   opacity: 1;
+  transform: translateX(0px);
   transition: all linear .3s;
 }
 
