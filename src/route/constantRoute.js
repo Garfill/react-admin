@@ -15,6 +15,9 @@ const constantRoutes = [
     path: '/404',
     component: NotMatch,
     hidden: true,
+    meta: {
+      noAuth: true,
+    }
   }, {
     path: '/',
     component: Layout,

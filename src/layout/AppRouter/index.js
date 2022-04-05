@@ -13,6 +13,16 @@ import ScrollToTop from 'components/ScrollToTop'
 import { getUserInfoAsync } from 'store/action/user'
 
 NProgress.configure({ showSpinner: false });
+
+// 无需登录访问的路由白名单
+const whiteListMap = {}
+constantRoutes.forEach(item => {
+  if (item.meta && item.meta.noAuth) {
+    whiteListMap[item.path] = item.component
+  }
+})
+const whitelist = Object.keys(whiteListMap)
+
 export class AppRouter extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +38,7 @@ export class AppRouter extends Component {
       if (props.location.pathname === '/login') {
         // 已有token，去登陆页，重定向至首页
         console.log('no need login >>>>>>>>');
-        return <Redirect to="/home"></Redirect>
+        return <Redirect to="/"></Redirect>
       } else {
         if (!props.userData || props.userData.id === undefined) {
           // 获取用户信息
@@ -37,8 +47,14 @@ export class AppRouter extends Component {
         }
       }
     } else {
-      console.log('need token >>>>>>>>')
       if (props.location.pathname !== '/login') {
+        console.log('need token >>>>>>>>')
+        if (whitelist.includes(props.location.pathname)) {
+          console.log('whitelist >>>>>>>>')
+          let component = whiteListMap[props.location.pathname]
+          NProgress.done();
+          return <Route path={props.location.pathname} component={component}></Route>
+        }
         return <Redirect to="/login"></Redirect>
       }
     }

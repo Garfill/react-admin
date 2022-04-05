@@ -60,7 +60,7 @@ class Login extends Component {
     const { data } = await login();
     setToken(data.token);
     this.props.history.push({
-      pathname: '/home',
+      pathname: '/',
     })
   }
 }

@@ -14,7 +14,3 @@
 > 多环境控制：[dotenv](http://github.com/motdotla/dotenv)
 > 
 > Mockjs 模拟数据请求
-
-
-### TODO
-- [ ] 使用 redux-saga 替换 redux-thunk
