@@ -19,7 +19,6 @@ export class CountTo extends Component {
 
     this.state.displayValue = String(this.state.localStart);
 
-    this.isMount = false;
   }
   render() {
     return (
@@ -35,12 +34,13 @@ export class CountTo extends Component {
     if (this.autoplay) {
       this.start()
     }
-    this.isMount = true;
   } 
 
   componentWillUnmount() {
     // 外部改变 props 导致新的值挂载到已销毁组件
-    this.isMount = false;
+    if (this.requestTimer) {
+      window.cancelAnimationFrame(this.requestTimer);
+    }
   }
 
   start = () => {
@@ -57,10 +57,6 @@ export class CountTo extends Component {
   }
   
   count = (timestamp) => {
-    if (!this.isMount) {
-      window.cancelAnimationFrame(this.requestTimer);
-      return;
-    }
     if (!this.startTimestamp) {
       this.startTimestamp = timestamp
     }
@@ -98,13 +94,14 @@ export class CountTo extends Component {
     if (this.isPause) return;
     // 暂停 = 以当前值作为下一次开始的值，并且使用剩下的duration
     window.cancelAnimationFrame(this.requestTimer);
+    this.requestTimer = null;
+    this.isPause = true;
     // 下一次开始的状态
     this.setState({
       localStart: this.state.nowValue,
       displayValue: String(this.state.nowValue),
       duration: this.state.duration - (this.timestamp - this.startTimestamp),
     });
-    this.isPause = true;
   }
 
   resume = () => {

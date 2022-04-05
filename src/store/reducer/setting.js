@@ -1,10 +1,10 @@
 import { defaultSettingState } from './state'
 
-function settingReducer(state = defaultSettingState, action) {
-  switch (action.type) {
+function settingReducer(state = defaultSettingState, { type, payload }) {
+  switch (type) {
     case 'toggleSider':
       return Object.assign({}, state, {
-        siderCollapsed: action.value
+        sidebarOpen: payload
       })
     default:
       break;

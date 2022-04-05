@@ -15,7 +15,7 @@ class NotFound extends Component {
   }
 
   backToIndex = () => {
-    this.props.history.replace('/')
+    this.props.history.replace('/home')
   }
 }
 

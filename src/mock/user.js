@@ -13,18 +13,9 @@ const mock = [
     url: '/user/info.*',
     type: 'get',
     response: config => {
-      const { id = 0 } = config.query;  
-      const info = users[id];
-      if (!info) {
-        return {
-          code: 50008,
-          message: 'There is not a user in this ID'
-        }
-      }
-
       return {
         code: 20000,
-        data: info,
+        data: users[0],
         message: '',
       }
     }

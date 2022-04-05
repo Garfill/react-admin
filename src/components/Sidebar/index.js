@@ -31,7 +31,7 @@ class Sidebar extends Component {
 
 const mapStateToProps = state => {
   return {
-    collapsed: state.setting.siderCollapsed
+    collapsed: !state.setting.sidebarOpen
   }
 }
 

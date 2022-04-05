@@ -6,5 +6,5 @@ export const defaultUserState = {
 }
 
 export const defaultSettingState = {
-  siderCollapsed: false,
+  sidebarOpen: true,
 }

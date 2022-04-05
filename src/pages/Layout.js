@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Layout } from 'antd'
 import Sidebar from 'components/Sidebar'
 import HeaderMenu from 'components/Header'
-import AppMain from 'components/AppMain'
+import AppMain from 'layout/AppMain'
 
 class AppLayout extends PureComponent {
   render() {
@@ -22,7 +22,7 @@ class AppLayout extends PureComponent {
 
 const mapStateToProps = state => {
   return {
-    collapsed: state.setting.siderCollapsed
+    collapsed: !state.setting.sidebarOpen
   }
 }
 

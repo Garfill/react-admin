@@ -18,8 +18,6 @@ class Login extends Component {
       }
     };
     this.formRef = createRef();
-
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
   render() {
     return (
@@ -53,17 +51,14 @@ class Login extends Component {
     const { username: oldname, password: oldpass } = this.state.form;
     return (username !== oldname || password !== oldpass);
   }
-  async handleSubmit(values) {
-    // Login submit
+  handleSubmit = async (values) => {
     this.setState({
       form: values
     })
     
-    // TODO: user login
+    // User login
     const { data } = await login();
     setToken(data.token);
-    this.props.updateMenu();
-
     this.props.history.push({
       pathname: '/home',
     })

@@ -4,7 +4,7 @@ import { HashRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import store from 'store'
 
-import AppRouter from 'components/AppRouter'
+import AppRouter from 'layout/AppRouter'
 
 class App extends Component {
   render() {

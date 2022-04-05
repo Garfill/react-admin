@@ -20,7 +20,7 @@ export class HeaderMenu extends Component {
     return (
       <Header className="header-background">
         <div className="header-inner">
-          <div className={"header-collapse-icon" + (this.props.siderCollapsed ? ' collapsed' : '')} onClick={this.toggleSider}>
+          <div className={"header-collapse-icon" + (this.props.sidebarOpen ? '' : ' collapsed')} onClick={this.toggleSider}>
             <MenuFoldOutlined />
           </div>
           <div className="header-user-block">
@@ -46,29 +46,29 @@ export class HeaderMenu extends Component {
     this.props.logoutDispatch();
   }
   toggleSider = () => {
-    this.props.toggleSiderCollapse(!this.props.siderCollapsed)
+    this.props.dispatchToggleSidebar(!this.props.sidebarOpen)
   }
 }
 
 const mapStateToProps = state => {
   return {
-    siderCollapsed: state.setting.siderCollapsed,
+    sidebarOpen: state.setting.sidebarOpen,
     userData: state.user.userData
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleSiderCollapse(status) {
+    dispatchToggleSidebar(status) {
       dispatch({
         type: 'toggleSider',
-        value: status,
+        payload: status,
       })
     },
     logoutDispatch() {
       dispatch({
         type: 'setUserData',
-        value: {},
+        payload: {},
       })
     }
   }
