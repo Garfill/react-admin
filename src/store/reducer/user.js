@@ -1,6 +1,5 @@
-import { defaultUserState } from './state'
-
 import { asyncRoutes } from 'route/asyncRoute'
+import { defaultUserState } from './state'
 import { flattenRoutes } from 'route'
 
 export default function userReducer(state = defaultUserState, { type, payload }) {
@@ -27,7 +26,12 @@ function buildUserData(state, userData = {}) {
 
 function buildUserMenuAndRoute(state) {
   const userMenu = buildUserMenu(asyncRoutes)
-  const userRoutes = flattenRoutes(userMenu)
+  let userRoutes = flattenRoutes(userMenu)
+  // 手动添加404
+  userRoutes.push({
+    path: '*',
+    redirect: '/404',
+  })
   return Object.assign({}, state, {
     userMenu,
     userRoutes,

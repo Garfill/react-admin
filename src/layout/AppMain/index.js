@@ -22,16 +22,20 @@ export class AppMain extends Component {
                 {
                   this.props.userRoutes.map(route => {
                     return (
-                      <Route key={route.path} path={route.path} exact={route.exact}>
-                        <div className="page">
-                          <route.component></route.component>
-                        </div>
-                      </Route>
+                      route.redirect
+                        ? <Redirect key={route.path} from={route.path} to={route.redirect} exact={route.exact} />
+                        : <Route key={route.path} path={route.path} exact={route.exact}>
+                          <div className="page">
+                            {
+                              route.component
+                                ? <route.component></route.component>
+                                : null
+                            }
+                          </div>
+                        </Route>
                     )
                   })
                 }
-                {/* 避免获取用户信息过程中(userRoute = [])跳转到404无法跳回来 */}
-                {this.props.userData.id ? <Redirect to="/404"></Redirect> : null}
               </Switch>
             </CSSTransition>
           </TransitionGroup>
