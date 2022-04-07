@@ -1,7 +1,6 @@
 import { lazy } from 'react'
 import { HomeOutlined, DisconnectOutlined } from '@ant-design/icons'
 
-// Fix me: 懒加载组件首次渲染没有动画效果
 const Home = lazy(() => import('pages/Home'))
 const Test = lazy(() => import('pages/Test'))
 const NotFound = lazy(() => import('pages/404'))

@@ -47,15 +47,17 @@ export class AppRouter extends Component {
         }
       }
     } else {
-      if (props.location.pathname !== '/login') {
-        console.log('need token >>>>>>>>')
-        if (whitelist.includes(props.location.pathname)) {
-          console.log('whitelist >>>>>>>>')
-          let component = whiteListMap[props.location.pathname]
-          NProgress.done();
-          return <Route path={props.location.pathname} component={component}></Route>
+      console.log('need token >>>>>>>>')
+      if (whitelist.includes(props.location.pathname)) {
+        console.log('whitelist >>>>>>>>')
+        let component = whiteListMap[props.location.pathname]
+        NProgress.done();
+        return <Route path={props.location.pathname} component={component}></Route>
+      } else {
+        if (props.location.pathname !== '/login') {
+          console.log('need login >>>>>>>>>')
+          return <Redirect to="/login"></Redirect>
         }
-        return <Redirect to="/login"></Redirect>
       }
     }
     NProgress.done();
